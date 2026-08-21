@@ -547,23 +547,23 @@ export interface ApiStoryStory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Anonymous'>;
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    Content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Date: Schema.Attribute.Date;
-    Description: Schema.Attribute.Text;
+    date: Schema.Attribute.Date;
+    excerpt: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::story.story'> &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Anonymous'>;
-    Profile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    profile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
-    Thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Title: Schema.Attribute.String &
+    slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
